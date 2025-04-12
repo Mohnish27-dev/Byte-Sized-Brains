@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - RescueBite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     
+    <style>
+        /* Global Styles */
+:root {
+    --primary-color: #4CAF50; /* Green - represents freshness/sustainability */
+    --secondary-color: #FF6B6B; /* Coral - for accents */
+    --dark-color: #333;
+    --light-color: #f8f9fa;
+    --text-color: #333;
+    --text-light: #666;
+    --white: #fff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    margin: 10px 5px;
+}
+
+.btn-primary {
+   background: transparent;
+    color: white;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(lightgreen,lightpink);
+    color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+   
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+nav ul li a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Main Content Styles */
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+}
+
+.about-hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: url(/asessts/donate.jpg);
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(8px);
+   
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Mission Section */
+.mission-section {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    align-items: center;
+}
+
+.mission-content {
+    flex: 1;
+}
+
+.mission-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: rgb(110, 220, 20);
+}
+
+.mission-content p {
+    margin-bottom: 2rem;
+    color: var(--text-light);
+}
+
+.mission-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    flex: 1;
+    min-width: 150px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.mission-image {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.mission-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: var(--transition);
+}
+
+.mission-image:hover img {
+    transform: scale(1.05);
+}
+
+/* How It Works Section */
+.how-it-works {
+    margin-bottom: 4rem;
+}
+
+.how-it-works h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.step {
+    background-color: lightgreen;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.step:hover {
+    transform: translateY(-10px);
+    background: linear-gradient(pink,lightgreen);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(pink,lightgreen);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+}
+
+.step h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.step p {
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+/* Team Section */
+.team-section {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.team-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.team-subtitle {
+    color: var(--text-light);
+    margin-bottom: 3rem;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.member {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+.member:hover{
+    transform: translateY(-10px);
+}
+
+
+
+.member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.5rem;
+    display: block;
+    border: 3px solid var(--primary-color);
+}
+
+.member h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.member p {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Testimonials Section */
+.testimonials {
+    margin-bottom: 4rem;
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.testimonial-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.testimonial blockquote {
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.testimonial blockquote::before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--primary-color);
+    position: absolute;
+    left: -0.5rem;
+    top: -1rem;
+    opacity: 0.3;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.testimonial-author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.testimonial-author p:first-child {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.testimonial-author p:last-child {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Join Section */
+.join-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 8px;
+    margin-bottom: 4rem;
+}
+
+.join-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.join-section p {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+.join-buttons .btn-primary {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border-color: var(--white);
+}
+
+.join-buttons .btn-primary:hover {
+    background-color: transparent;
+    color: var(--white);
+}
+
+.join-buttons .btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.join-buttons .btn-secondary:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    padding: 3rem 0 0;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.footer-section p {
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+    color: #ccc;
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--primary-color);
+}
+
+.social-icons img {
+    width: 20px;
+    height: 20px;
+    /* filter: brightness(0) invert(1); */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+
+  .about-hero h1 {
+    animation: fadeIn 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .step:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .mission-section {
+        flex-direction: column;
+    }
+    
+    .mission-image {
+        order: -1;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .about-hero p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .mission-stats {
+        flex-direction: column;
+    }
+    
+    .stat-item {
+        width: 100%;
+    }
+    
+    .join-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+.logoo{
+    color:green;
+    font-size:28px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"> <span> <i class="logoo fas fa-leaf"></i>
+                 RescueBite
+                
+                </span>
+            </div>
+           
+              
+        </nav>
+    </header>
+
+    <main class="about-container">
+        <section class="about-hero">
+            <h1>Our Mission to Reduce Food Waste</h1>
+            <p>Connecting surplus food with those who need it most</p>
+        </section>
+
+        <section class="mission-section">
+            <div class="mission-content">
+                <h2>Why We Exist</h2>
+                <p>Every year, 1.3 billion tons of food is wasted globally while nearly 10% of the world's population goes hungry. RescueBite was created to bridge this gap by providing a platform that connects food businesses with surplus food to charities and individuals in need.</p>
+                
+                <div class="mission-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-desc">of food produced in the US goes uneaten</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">42M</span>
+                        <span class="stat-desc">Americans face food insecurity</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25%</span>
+                        <span class="stat-desc">of freshwater used to produce wasted food</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mission-image">
+                <img src="/asessts/Banner.jpg" height="300px" alt="Food rescue operation">
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How RescueBite Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Food Businesses List Surplus</h3>
+                    <p>Restaurants, grocery stores, and other food businesses post their surplus food on our platform with details about type, quantity, and pickup time.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Charities Get Notified</h3>
+                    <p>Registered charities and organizations receive alerts about available food in their area that matches their needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Food Gets Collected</h3>
+                    <p>The charity arranges pickup or delivery of the food items, ensuring they reach people in need quickly.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Impact is Tracked</h3>
+                    <p>Both donors and recipients can see the positive impact they're making through our reporting dashboard.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2>Our Team</h2>
+            <p class="team-subtitle">Passionate individuals working to reduce food waste</p>
+            <div class="team-members">
+                <div class="member">
+               
+                    <img src="/asessts/mohnish.jpg" alt="Team member">
+                    <h3>Mohnish Pamnani</h3>
+                    <p>Founder & CEO</p>
+                
+                </div>
+                <div class="member">
+               
+                    <img src="/asessts/zaid.jpeg" alt="Team member">
+                    <h3>Mohammad Zaid Khan</h3>
+                    <p>Technology Lead</p>
+                
+                </div>
+                <div class="member">
+                
+                    <img src="/asessts/harsh.jpg" alt="Team member">
+                    <h3>Harsh Kumar</h3>
+                    <p>Partnerships Director</p>
+                
+                </div>
+                <div class="member">
+                
+                    <img src="/asessts/gungun.jpg" alt="Team member">
+                    <h3>Gungun Wadhwani</h3>
+                    <p>Web Designer</p>
+                
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>What Our Partners Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <blockquote>"RescueBite has helped us redirect over 5,000 pounds of perfectly good food to local shelters each month. It's a win-win for our business and the community."</blockquote>
+                    <div class="testimonial-author">
+                        <img src="/asessts/th.jpeg" alt="Testimonial author">
+                        <div>
+                            <p>Robert Thompson</p>
+                            <p>Owner, Fresh Market Grocery</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <blockquote>"Before RescueBite, we struggled to find consistent food donations. Now we can reliably feed 200 people daily thanks to this platform."</blockquote>
+                    <div class="testimonial-author">
+                        <img src="/asessts/maria.jpg" alt="Testimonial author">
+                        <div>
+                            <p>Maria Gonzalez</p>
+                            <p>Director, Community Kitchen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="join-section">
+            <h2>Join Our Movement</h2>
+            <p>Whether you're a food business with surplus or an organization helping feed people, we'd love to have you as part of our network.</p>
+            <div class="join-buttons">
+                <a href="register.html?type=donor" class="btn btn-primary">Register</a>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RescueBite</h3>
+                <p>Reducing food waste, fighting hunger.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="dashboard.html">Donate Food</a></li>
+                    <li><a href="dashboard.html">Request Food</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>info@RescueBite.org</p>
+                <p>(555) 123-4567</p>
+                <div class="social-icons">
+                    <a href="#"><img src="/asessts/f.png" alt="Facebook"></a>
+                    <a href="#"><img src="/asessts/tw.jpeg" alt="Twitter"></a>
+                    <a href="#"><img src="/asessts/instagram-6338392_1280.webp" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 RescueBite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Stats animation
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const duration = 2000; // Animation duration in ms
+    const startValues = [0, 0, 0];
+    const endValues = [40, 42, 25];
+    const suffixes = ['%', 'M', '%'];
+    let animationStarted = false;
+
+    function animateStats() {
+        if (animationStarted) return;
+        animationStarted = true;
+
+        statNumbers.forEach((stat, index) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = Math.floor(progress * endValues[index]);
+                stat.textContent = currentValue + suffixes[index];
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        });
+    }
+
+    // Check if stats are in viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Check on scroll
+    function checkStatsVisibility() {
+        const statsSection = document.querySelector('.mission-stats');
+        if (isInViewport(statsSection)) {
+            animateStats();
+            window.removeEventListener('scroll', checkStatsVisibility);
+        }
+    }
+
+    // Initial check
+    checkStatsVisibility();
+    window.addEventListener('scroll', checkStatsVisibility);
+});
+
+
+// Replace the step function in the animateStats function with this:
+const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    let currentValue;
+    
+    if (index === 1) { // For the million count (42M)
+        currentValue = (progress * endValues[index]).toFixed(1);
+        // Remove .0 if it's a whole number
+        if (currentValue.endsWith('.0')) {
+            currentValue = currentValue.split('.')[0];
+        }
+    } else {
+        currentValue = Math.floor(progress * endValues[index]);
+    }
+    
+    stat.textContent = currentValue + suffixes[index];
+    
+    if (progress < 1) {
+        window.requestAnimationFrame(step);
+    }
+};
+    </script>
+</body>
+</html>

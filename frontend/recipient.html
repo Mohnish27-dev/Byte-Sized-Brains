@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RescueBite - Recipient Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="js/recipient.js" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
+    <style>
+        /* Base Styles */
+        body {
+            background-color: #f9fafb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #374151;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #2563eb;
+            padding: 1rem;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-items {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .nav-link i {
+            margin-right: 0.25rem;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .content-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .content-layout {
+                flex-direction: row;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 100%;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 25%;
+            }
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1d4ed8;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1rem;
+        }
+
+        .filter-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+
+        .filter-input {
+            display: block;
+            width: 100%;
+            margin-top: 0.25rem;
+            padding: 0.375rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            font-size: 0.875rem;
+        }
+
+        .filter-input:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+
+        .radio-group {
+            margin-top: 0.5rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-input {
+            height: 1rem;
+            width: 1rem;
+            color: #3b82f6;
+            border-color: #d1d5db;
+            margin-right: 0.5rem;
+        }
+
+        .radio-input:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+
+        .radio-label {
+            font-size: 0.875rem;
+            color: #374151;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: #1f2937;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+
+        .quick-stats {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #eff6ff;
+            border-radius: 0.5rem;
+        }
+
+        .quick-stats-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-stats-item {
+            font-size: 0.875rem;
+        }
+
+        .quick-stats-value {
+            font-weight: 700;
+        }
+
+        /* Main Panel */
+        .main-panel {
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .main-panel {
+                width: 75%;
+            }
+        }
+
+        .panel-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1d4ed8;
+        }
+
+        .sort-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sort-label {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        .sort-select {
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+        }
+
+        .sort-select:focus {
+            border-color: #3b82f6;
+            outline: none;
+        }
+
+        .view-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .toggle-btn {
+            color: #2563eb;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-btn:hover {
+            color: #1e40af;
+        }
+
+        .toggle-btn i {
+            margin-right: 0.25rem;
+        }
+
+        .list-view {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .loading-spinner i {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 0.5rem;
+        }
+
+        .map-view {
+            display: none;
+            height: 24rem;
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .pagination-info {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .page-btn {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background-color: #f3f4f6;
+            color: #4b5563;
+            cursor: pointer;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Claims Table */
+        .claims-table-container {
+            overflow-x: auto;
+        }
+
+        .claims-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .claims-table thead {
+            background-color: #f9fafb;
+        }
+
+        .claims-table th {
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .claims-table tbody tr {
+            background-color: white;
+        }
+
+        .claims-table td {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            color: #374151;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .claims-table td.empty {
+            text-align: center;
+            color: #6b7280;
+            padding: 1rem;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            display: none;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 32rem;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            color: #6b7280;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
+
+        .modal-close:hover {
+            color: #374151;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .modal-btn-cancel {
+            border: 1px solid #d1d5db;
+            color: #374151;
+            background-color: white;
+        }
+
+        .modal-btn-cancel:hover {
+            background-color: #f9fafb;
+        }
+
+        .modal-btn-confirm {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+        }
+
+        .modal-btn-confirm:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-brand {
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-brand {
+                margin-bottom: 0;
+            }
+        }
+
+        .footer-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: #9ca3af;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .links-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-link {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .footer-contact {
+            color: #9ca3af;
+        }
+
+        .footer-divider {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="logo">RescueBite</a>
+            <div class="nav-items">
+                <a href="recipient-dashboard.html" class="nav-link">
+                    <i class="fas fa-user-circle"></i> My Dashboard
+                </a>
+                <button id="logout-btn" class="nav-link" style="background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-layout">
+            <!-- Sidebar Filters -->
+            <aside class="sidebar">
+                <h2 class="sidebar-title">Search Filters</h2>
+                
+                <div class="space-y-4">
+                    <!-- Location Filter -->
+                    <div class="filter-group">
+                        <label for="location" class="filter-label">Location</label>
+                        <input type="text" id="location" placeholder="Enter your location" class="filter-input">
+                    </div>
+                    
+                    <!-- Distance Filter -->
+                    <div class="filter-group">
+                        <label for="distance" class="filter-label">Within</label>
+                        <select id="distance" class="filter-input">
+                            <option value="5">5 miles</option>
+                            <option value="10" selected>10 miles</option>
+                            <option value="25">25 miles</option>
+                            <option value="50">50 miles</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Food Type Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">Food Type</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input id="all-food" name="food-type" type="radio" checked class="radio-input">
+                                <label for="all-food" class="radio-label">All Types</label>
+                            </div>
+                            <div class="radio-item">
+                                <input id="perishable" name="food-type" type="radio" class="radio-input">
+                                <label for="perishable" class="radio-label">Perishable</label>
+                            </div>
+                            <div class="radio-item">
+                                <input id="non-perishable" name="food-type" type="radio" class="radio-input">
+                                <label for="non-perishable" class="radio-label">Non-Perishable</label>
+                            </div>
+                            <div class="radio-item">
+                                <input id="prepared" name="food-type" type="radio" class="radio-input">
+                                <label for="prepared" class="radio-label">Prepared Meals</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Expiry Filter -->
+                    <div class="filter-group">
+                        <label for="expiry" class="filter-label">Expires Within</label>
+                        <select id="expiry" class="filter-input">
+                            <option value="1">24 hours</option>
+                            <option value="3" selected>3 days</option>
+                            <option value="7">7 days</option>
+                            <option value="30">30 days</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Quantity Filter -->
+                    <div class="filter-group">
+                        <label for="quantity" class="filter-label">Minimum Quantity</label>
+                        <input type="number" id="min-quantity" min="1" value="10" class="filter-input">
+                    </div>
+                    
+                    <button id="apply-filters" class="btn btn-primary">
+                        Apply Filters
+                    </button>
+                    
+                    <button id="reset-filters" class="btn btn-secondary">
+                        Reset Filters
+                    </button>
+                </div>
+                
+                <div class="quick-stats">
+                    <h3 class="quick-stats-title">Quick Stats</h3>
+                    <p class="quick-stats-item">Total Claims: <span id="total-claims" class="quick-stats-value">24</span></p>
+                    <p class="quick-stats-item">People Fed: <span id="people-fed" class="quick-stats-value">480</span></p>
+                </div>
+            </aside>
+
+            <!-- Main Panel -->
+            <main class="main-panel">
+                <!-- Search Results Section -->
+                <section class="panel-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Available Food Donations</h2>
+                        <div class="sort-container">
+                            <span class="sort-label">Sort by:</span>
+                            <select id="sort-by" class="sort-select">
+                                <option value="distance">Distance</option>
+                                <option value="expiry">Soonest Expiry</option>
+                                <option value="quantity">Highest Quantity</option>
+                                <option value="newest">Newest First</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Map View Toggle -->
+                    <div class="view-toggle">
+                        <button id="toggle-view" class="toggle-btn">
+                            <i class="fas fa-map-marked-alt"></i> Switch to Map View
+                        </button>
+                    </div>
+                    
+                    <!-- List View -->
+                    <div id="list-view" class="list-view">
+                        <!-- Food cards will be dynamically inserted here -->
+                        <div id="loading-spinner" class="loading-spinner">
+                            <i class="fas fa-spinner"></i>
+                            <p class="loading-text">Loading available donations...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Map View (hidden by default) -->
+                    <div id="map-view" class="map-view">
+                        <!-- Google Map will be rendered here -->
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            Showing <span id="showing-from">1</span>-<span id="showing-to">8</span> of <span id="total-items">24</span> results
+                        </div>
+                        <div class="pagination-controls">
+                            <button id="prev-page" disabled class="page-btn">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="next-page" class="page-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- My Claims Section -->
+                <section id="my-claims" class="panel-section">
+                    <h2 class="section-title" style="margin-bottom: 1rem;">My Recent Claims</h2>
+                    <div class="claims-table-container">
+                        <table class="claims-table">
+                            <thead>
+                                <tr>
+                                    <th>Food Item</th>
+                                    <th>Quantity</th>
+                                    <th>Donor</th>
+                                    <th>Status</th>
+                                    <th>Pickup</th>
+                                </tr>
+                            </thead>
+                            <tbody id="claims-list">
+                                <!-- Dynamically populated by JavaScript -->
+                                <tr>
+                                    <td colspan="5" class="empty">Loading your claims...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Claim Modal (hidden by default) -->
+    <div id="claim-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Claim This Donation</h3>
+                <button id="close-modal" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="modal-content">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+            
+            <div class="modal-footer">
+                <button id="cancel-claim" class="modal-btn modal-btn-cancel">
+                    Cancel
+                </button>
+                <button id="confirm-claim" class="modal-btn modal-btn-confirm">
+                    Confirm Claim
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">RescueBite</h3>
+                    <p class="footer-description">Connecting surplus food with those in need.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4 class="links-title">Quick Links</h4>
+                        <ul class="links-list">
+                            <li><a href="#" class="footer-link">About Us</a></li>
+                            <li><a href="#" class="footer-link">How It Works</a></li>
+                            <li><a href="#" class="footer-link">Success Stories</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="links-title">Contact</h4>
+                        <ul class="links-list">
+                            <li class="footer-contact">help@RescueBite.org</li>
+                            <li class="footer-contact">1-800-FOOD-SHR</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-divider">
+                <p>© 2023 RescueBite. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

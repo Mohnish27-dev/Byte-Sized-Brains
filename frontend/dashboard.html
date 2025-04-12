@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RescueBite - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js" defer></script>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #4f46e5;
+            padding: 1rem;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-items {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .nav-link{
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s;
+        }
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .notification-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -0.25rem;
+            right: -0.25rem;
+            background-color: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 9999px;
+            height: 1.25rem;
+            width: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            height: 2rem;
+            width: 2rem;
+            border-radius: 9999px;
+            object-fit: cover;
+        }
+
+        .user-name {
+            display: none;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+            width: 12rem;
+            background-color: white;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 0.5rem 0;
+            z-index: 50;
+            display: none;
+        }
+
+        .user-info:hover .user-dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #374151;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f5f3ff;
+        }
+
+        @media (min-width: 768px) {
+            .user-name {
+                display: inline;
+            }
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .banner-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .banner-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner-text p {
+            opacity: 0.9;
+        }
+
+        .banner-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .banner-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .banner-btn-primary {
+            background-color: white;
+            color: #4f46e5;
+        }
+
+        .banner-btn-secondary {
+            background-color: #4338ca;
+            color: white;
+        }
+
+        @media (min-width: 768px) {
+            .banner-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .banner-actions {
+                margin-top: 0;
+            }
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .stat-icon {
+            padding: 0.75rem;
+            border-radius: 9999px;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .stat-icon-green {
+            background-color: #d1fae5;
+            color: #10b981;
+        }
+
+        .stat-icon-blue {
+            background-color: #dbeafe;
+            color: #3b82f6;
+        }
+
+        .stat-icon-yellow {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+
+        .stat-icon-purple {
+            background-color: #ede9fe;
+            color: #8b5cf6;
+        }
+
+        .stat-text p {
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .stat-text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0.25rem 0;
+        }
+
+        .stat-meta {
+            font-size: 0.875rem;
+        }
+
+        .stat-meta-green {
+            color: #10b981;
+        }
+
+        .stat-meta-blue {
+            color: #3b82f6;
+        }
+
+        .stat-meta-yellow {
+            color: #d97706;
+        }
+
+        .stat-meta-purple {
+            color: #8b5cf6;
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Content Layout */
+        .content-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .left-column {
+            width: 100%;
+        }
+
+        .right-column {
+            width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            .content-layout {
+                flex-direction: row;
+            }
+            .left-column {
+                width: 66.666667%;
+            }
+            .right-column {
+                width: 33.333333%;
+            }
+        }
+
+        /* Activity Chart */
+        .activity-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .time-select {
+            background-color: #f3f4f6;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        /* Recent Activity */
+        .recent-activity {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .loading-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .loading-spinner i {
+            margin-right: 0.5rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .actions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: #1f2937;
+            transition: background-color 0.2s;
+        }
+
+        .action-item:hover {
+            background-color: #f5f3ff;
+        }
+
+        .action-icon {
+            padding: 0.5rem;
+            border-radius: 9999px;
+            margin-right: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .action-icon-green {
+            background-color: #d1fae5;
+            color: #10b981;
+        }
+
+        .action-icon-blue {
+            background-color: #dbeafe;
+            color: #3b82f6;
+        }
+
+        .action-icon-yellow {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+
+        .action-icon-purple {
+            background-color: #ede9fe;
+            color: #8b5cf6;
+        }
+
+        /* Upcoming Pickups */
+        .upcoming-pickups {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .pickups-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pickups-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .view-all {
+            font-size: 0.875rem;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        .pickups-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-brand {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-brand p {
+            color: #9ca3af;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .links-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .links-item {
+            color: #9ca3af;
+        }
+
+        .links-item a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .links-item a:hover {
+            color: white;
+        }
+
+        .footer-divider {
+            border-top: 1px solid #374151;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        @media (min-width: 768px) {
+            .footer-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-brand {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="home.html" class="logo">RescueBite</a>
+            
+            <div class="nav-items">
+                <a href="home.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="login.html" class="nav-link">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container" style="padding: 1.5rem 1rem;">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h1>Welcome To RescueBite</h1>
+                    <p>Here's what's happening with your food sharing activities today.</p>
+                </div>
+                <div class="banner-actions">
+                    <a href="login.html" class="banner-btn banner-btn-primary">
+                        <i class="fas fa-utensils" style="margin-right: 0.25rem;"></i> Donate Food
+                    </a>
+                    <a href="login.html" class="banner-btn banner-btn-secondary">
+                        <i class="fas fa-search" style="margin-right: 0.25rem;"></i> Find Food
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <!-- Food Shared -->
+            <div class="stat-card">
+                <div class="stat-icon stat-icon-green">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <div class="stat-text">
+                    <p>Food Shared</p>
+                    <h3 id="food-shared">245</h3>
+                    <p class="stat-meta stat-meta-green">+12% from last week</p>
+                </div>
+            </div>
+            
+            <!-- People Fed -->
+            <div class="stat-card">
+                <div class="stat-icon stat-icon-blue">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="stat-text">
+                    <p>People Fed</p>
+                    <h3 id="people-fed">1,240</h3>
+                    <p class="stat-meta stat-meta-blue">+8% from last week</p>
+                </div>
+            </div>
+            
+            <!-- Active Donations -->
+            <div class="stat-card">
+                <div class="stat-icon stat-icon-yellow">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <div class="stat-text">
+                    <p>Active Donations</p>
+                    <h3 id="active-donations">18</h3>
+                    <p class="stat-meta stat-meta-yellow">5 need pickup today</p>
+                </div>
+            </div>
+            
+            <!-- Waste Prevented -->
+            <div class="stat-card">
+                <div class="stat-icon stat-icon-purple">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="stat-text">
+                    <p>Waste Prevented</p>
+                    <h3 id="waste-prevented">4.2T</h3>
+                    <p class="stat-meta stat-meta-purple">Equivalent to 120 cars</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-layout">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Activity Chart -->
+                <div class="activity-card">
+                    <div class="card-header">
+                        <h2>Weekly Activity</h2>
+                        <select class="time-select">
+                            <option>This Week</option>
+                            <option>Last Week</option>
+                            <option>This Month</option>
+                        </select>
+                    </div>
+                    <canvas id="activityChart" height="300"></canvas>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h2 class="card-header" style="margin-bottom: 1.5rem;">Recent Activity</h2>
+                    <div class="activity-list" id="recent-activity">
+                        <!-- Activity items will be dynamically inserted here -->
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner text-indigo-500"></i>
+                            <span>Loading activities...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2 class="card-header" style="margin-bottom: 1.5rem;">Quick Actions</h2>
+                    <div class="actions-list">
+                        <a href="login.html" class="action-item">
+                            <div class="action-icon action-icon-green">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <span>Add New Donation</span>
+                        </a>
+                        <a href="login.html" class="action-item">
+                            <div class="action-icon action-icon-blue">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <span>Find Available Food</span>
+                        </a>
+                        <a href="#" class="action-item">
+                            <div class="action-icon action-icon-yellow">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <span>Schedule Pickup</span>
+                        </a>
+                        <a href="#" class="action-item">
+                            <div class="action-icon action-icon-purple">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <span>Generate Report</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Pickups -->
+                <div class="upcoming-pickups">
+                    <div class="pickups-header">
+                        <h2>Upcoming Pickups</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="pickups-list" id="upcoming-pickups">
+                        <!-- Pickup items will be dynamically inserted here -->
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner text-indigo-500"></i>
+                            <span>Loading pickups...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3>RescueBite</h3>
+                <p>Connecting surplus food with those in need.</p>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4 class="links-title">Quick Links</h4>
+                    <ul class="links-list">
+                        <li class="links-item"><a href="#">About Us</a></li>
+                        <li class="links-item"><a href="#">How It Works</a></li>
+                        <li class="links-item"><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="links-title">Contact</h4>
+                    <ul class="links-list">
+                        <li class="links-item">help@RescueBite.org</li>
+                        <li class="links-item">1-800-FOOD-SHR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-divider">
+            <p>© 2023 RescueBite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('activityChart').getContext('2d');
+            const activityChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Donations',
+                            data: [12, 19, 8, 15, 10, 5, 9],
+                            backgroundColor: '#4F46E5',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Distributions',
+                            data: [8, 12, 5, 9, 7, 3, 6],
+                            backgroundColor: '#10B981',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
