@@ -1,6 +1,6 @@
 <div align="center">
   <h1>🍽️ RescueBite - Fighting Hunger, Reducing Waste 🚀</h1>
-  <img src="https://via.placeholder.com/1200x400/4CAF50/FFFFFF?text=FoodShare+-+Share+Food,+Save+Lives" alt="FoodShare Banner">
+  <img src="https://via.placeholder.com/1200x400/4CAF50/FFFFFF?text=FoodShare+-+Share+Food,+Save+Lives" alt="Rescuebite Banner">
 </div>
 
 <h2>📌 Project Overview</h2>
