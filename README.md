@@ -1,6 +1,6 @@
 <div align="center">
   <h1>🍽️ RescueBite - Fighting Hunger, Reducing Waste 🚀</h1>
-  <img src="https://via.placeholder.com/1200x400/4CAF50/FFFFFF?text=FoodShare+-+Share+Food,+Save+Lives" alt="Rescuebite Banner">
+  <img src="https://www.shutterstock.com/shutterstock/photos/1912062127/display_1500/stock-vector-food-donation-banner-or-poster-design-with-cartoon-characters-of-volunteers-flat-vector-1912062127.jpg" alt="Rescuebite Banner">
 </div>
 
 <h2>📌 Project Overview</h2>
@@ -66,20 +66,6 @@ Project Byteverse/
 
 <hr>
 
-<h2>📸 Screenshots</h2>
-
-<table>
-  <tr>
-    <th>Homepage</th>
-    <th>Login Page</th>
-    <th>Dashboard</th>
-  </tr>
-  <tr>
-    <td><img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Home" alt="Homepage"></td>
-    <td><img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Login" alt="Login"></td>
-    <td><img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Dashboard" alt="Dashboard"></td>
-  </tr>
-</table>
 
 <hr>
 
@@ -128,7 +114,7 @@ const userSchema = new mongoose.Schema({
 
 <h2>🤝 Contribute</h2>
 <p>Feel free to fork, suggest improvements, or report issues!</p>
-<p>📧 <strong>Contact</strong>: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+<p>📧 <strong>Contact</strong>: <a href="mailto:mohnishp.ug24.cs@nitp.ac.in">mohnishp.ug24.cs@nitp.ac.in</a></p>
 
 <div align="center">
   <p><strong>🍲 Share Food, Save Lives! 🌍</strong></p>
