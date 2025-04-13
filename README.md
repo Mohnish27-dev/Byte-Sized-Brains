@@ -1,29 +1,47 @@
 <div align="center">
-  <h1>🍽️ RescueBite - Fighting Hunger, Reducing Waste 🚀</h1>
-  <img src="https://www.shutterstock.com/shutterstock/photos/1912062127/display_1500/stock-vector-food-donation-banner-or-poster-design-with-cartoon-characters-of-volunteers-flat-vector-1912062127.jpg" alt="Rescuebite Banner">
+  <h1>🚀 RescueBite - Fighting Hunger, Reducing Waste</h1>
+  <p>Bridging the gap between food donors and charities to reduce food waste and combat hunger</p>
+  
+  <!-- Badges -->
+  <p>
+    <img src="https://img.shields.io/badge/Frontend-HTML/CSS/JS-orange" alt="Frontend">
+    <img src="https://img.shields.io/badge/Backend-Node.js/Express-green" alt="Backend">
+    <img src="https://img.shields.io/badge/Database-MongoDB-blue" alt="Database">
+
+  </p>
+  
+  <!-- Quick Links -->
+  <h2>📌 Quick Links</h2>
+  <p>
+    <a href="#">
+      <img src="https://img.shields.io/badge/Presentation-PPT-blue?style=for-the-badge&logo=microsoft-powerpoint" alt="PPT">
+    </a>
+    <a href="#">
+      <img src="https://img.shields.io/badge/Video-Pitch-red?style=for-the-badge&logo=youtube" alt="Video Pitch">
+    </a>
+  </p>
+  
+  <img src="https://www.shutterstock.com/shutterstock/photos/1912062127/display_1500/stock-vector-food-donation-banner-or-poster-design-with-cartoon-characters-of-volunteers-flat-vector-1912062127.jpg" alt="RescueBite Banner" width="800">
 </div>
 
-<h2>📌 Project Overview</h2>
-<p><strong>RescueBite</strong> is a web application designed to bridge the gap between food donors (restaurants, events, households) and charities/NGOs to reduce food waste and combat hunger. The platform allows donors to post surplus food, while recipients can search and schedule pickups efficiently.</p>
+## 📖 Table of Contents
+- [✨ Features](#-features)
+- [🛠️ Tech Stack](#%EF%B8%8F-tech-stack)
+- [📂 Project Structure](#-project-structure)
+- [⚙️ Setup & Installation](#%EF%B8%8F-setup--installation)
+- [🔄 Workflow](#-workflow)
+- [🗃️ Database Schema](#%EF%B8%8F-database-schema)
+- [🖼️ Screenshots](#%EF%B8%8F-screenshots)
+- [🤝 Contributing](#-contributing)
 
-<h3>🌟 Key Features (Completed)</h3>
-<ul>
-  <li>✔ <strong>User Authentication</strong> – Login/Signup (Donors & Recipients)</li>
-  <li>✔ <strong>Dashboard</strong> – Personalized dashboard for donors & recipients</li>
-  <li>✔ <strong>Database Integration</strong> – MongoDB stores user details (name, email, password)</li>
-  <li>✔ <strong>Responsive Frontend</strong> – Built with <strong>HTML, CSS, JavaScript</strong></li>
-  <li>✔ <strong>Backend API</strong> – Powered by <strong>Node.js, Express.js, Mongoose</strong></li>
-</ul>
 
-<h3>🚧 Upcoming Features (Mid-Evaluation)</h3>
-<ul>
-  <li>🔹 <strong>Donation Management</strong> – Donors can add food listings</li>
-  <li>🔹 <strong>Food Search System</strong> – Charities can find nearby donations</li>
-  <li>🔹 <strong>Pickup Scheduling</strong> – Real-time scheduling system</li>
-  <li>🔹 <strong>Transaction History</strong> – Track donations & pickups</li>
-</ul>
-
-<hr>
+## ✨ Features
+- **User Authentication**: Secure login/signup for donors and recipients
+- **Personalized Dashboards**: Custom interfaces for donors and charities
+- **Food Posting**: Donors can easily post surplus food details
+- **Real-time Updates**: Instant notifications for available food
+- **Responsive Design**: Works on all device sizes
+- **MongoDB Integration**: Efficient data storage and retrieval
 
 <h2>🛠️ Tech Stack</h2>
 
@@ -44,43 +62,60 @@
 
 <hr>
 
-<h2>📂 Project Structure</h2>
 
+**Database**:
+ <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
+- MongoDB (with Mongoose ODM)
+
+## 📂 Project Structure
 <pre>
 Project Byteverse/
-├── frontend/          # Static files (CSS, JS, Images)
-│   ├── home.html
-│   ├── about.html
-│   ├── login.html
-│   ├── dashboard.html
-│   ├── donor-dashboard.html
-│   └── recipient-dashboard.html
-├── routes/          # Express routes
-│   ├── register.js  # Authentication routes
-│   └── dashboard.js # Dashboard routes
-├── models/          # MongoDB Schemas
-│   └── registration.js    # User model
-├── server.js           # Main server file
-└── package.json     # Dependencies
+├── frontend/
+│ ├── home.html
+│ ├── login.html
+│ ├── dashboard.html
+│ ├── thankyou.html
+│ ├── donor-dashboard.html
+│ ├── recipient-dashboard.html
+│ ├── about.html
+│ ├── donor.html
+│ ├── recipient.html
+│ ├── terms and condition.html
+│ └── js/
+│ ├── dashboard.js
+│ ├── donor-dashboard.js
+│ ├── donor.js
+│ ├── login.js
+│ └── recipient-dashboard.js
+├── backend/
+│ ├── server.js
+│ ├── package.json
+│ ├── routes/
+│ │ ├── food.js
+│ │ ├── register.js
+│ │ └── login.js
+│ └── models/
+│ ├── food_data.js
+│ └── registration_data.js
+└── assets/
+├── images/
+└── icons/
 </pre>
 
-<hr>
-
-
-<hr>
-
 <h2>⚙️ Setup & Installation</h2>
-<h3>download all the folders in Project Byteverse folder</h3>
+
 
 <ol>
   <li><strong>Clone the repository</strong>
-    <pre>install all the folders
-cd Project Byteverse</pre>
+    ```bash
+    <pre>git clone https://github.com/Mohnish27-dev/Project-Byteverse.git
+cd Project Byteverse/pre>
   </li>
   <li><strong>Install dependencies</strong>
-    <pre>npm install express mongoose cors body-parser bcryptjs express-session</pre>
+    <pre>npm install</pre>
+    <pre>npm install cors mongoose express</pre
   </li>
-  <li><strong>Start the server</strong>
+  <li><strong>Start the development server</strong>
     <pre>node server.js</pre>
   </li>
   <li><strong>Access the app</strong><br>
@@ -96,19 +131,145 @@ cd Project Byteverse</pre>
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
   
 });
+</pre>
+<pre>
+
+  const foodSchema=new mongoose.Schema({
+  name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    category: {
+        type: String,
+        required: true,
+    },
+    expirydate: {
+        type: Date,
+        required: true
+    },
+    description: {
+        type: String,
+        trim: true
+    },
+    pickupTime: {
+        type: String,
+        required: true
+    },
+    storage: {
+        type: String,
+        required: true
+    }
+  })
 </pre>
 
 <hr>
 
-<h2>📅 Future Roadmap</h2>
-<ul>
-  <li>✅ <strong>Mid-Evaluation</strong> – Basic user auth & dashboards (Current)</li>
-  <li>🔜 <strong>Final Submission</strong> – Donation system, search & scheduling</li>
-  <li>🌟 <strong>Post-Evaluation</strong> – Notifications, analytics, mobile app</li>
-</ul>
+<h2>📸 Screenshots</h2>
+
+<table>
+  <tr>
+    <th>Homepage</th>
+    <th>Login Page</th>
+    <th>Dashboard</th>
+    <th>Donate</th>
+    <th>About</th>
+  </tr>
+  <tr>
+    <td><img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Home" alt="Homepage"></td>
+    <td><img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Login" alt="Login"></td>
+    <td><img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Dashboard" alt="Dashboard"></td>
+    <td><img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Donate" alt="Donate"></td>
+    <td><img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=About" alt="About"></td>
+  </tr>
+</table>
+
+<hr>
+
+## 🚀 Usage
+
+<div align="center">
+  <h3>How to Use RescueBite Platform</h3>
+</div>
+
+### 👨‍🍳 For Food Donors
+<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+  <ol>
+    <li><strong>Register/Login</strong>: Create an account as a food donor</li>
+    <li><strong>Post Food</strong>: Fill out the food donation form with details:
+      <ul>
+        <li>Food type and quantity</li>
+        <li>Preparation and expiry times</li>
+        <li>Special instructions or allergens</li>
+        <li>Pickup location and availability</li>
+      </ul>
+    </li>
+    <li><strong>Manage Donations</strong>:
+      <ul>
+        <li>View your active donations on dashboard</li>
+        <li>Update donation status when claimed</li>
+        <li>View recipient details when matched</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+### 🏛️ For Charities/Recipients
+<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+  <ol>
+    <li><strong>Register/Login</strong>: Create an account as a verified food recipient</li>
+    <li><strong>Browse Available Food</strong>:
+      <ul>
+        <li>Search by location, food type, or quantity</li>
+        <li>View detailed food information</li>
+        <li>Check preparation and expiry times</li>
+      </ul>
+    </li>
+    <li><strong>Request Food</strong>:
+      <ul>
+        <li>Submit pickup request for desired items</li>
+        <li>Coordinate pickup time with donor</li>
+        <li>Receive confirmation details</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+### 🔄 Workflow Diagram
+<div align="center">
+  <pre>
+  ┌─────────────────────┐      ┌─────────────────────┐      ┌─────────────────────┐
+│                     │      │                     │      │                     │
+│    Food Donor       │─────▶│   RescueBite        │─────▶│  Food Recipient     │
+│  (Restaurants/      │      │    Platform        │      │  (Charities/NGOs)   │
+│   Individuals)      │◀─────│                     │◀─────│                     │
+└─────────────────────┘      └─────────────────────┘      └─────────────────────┘
+        │                          │                          │
+        │ 1. Posts available food  │ 2. Lists available food  │
+        │─────────────────────────▶│─────────────────────────▶│
+        │                          │                          │
+        │ 6. Receives confirmation │ 5. Updates food status   │
+        │◀─────────────────────────│◀─────────────────────────│
+        │                          │                          │
+        │                          │ 3. Browses & requests    │
+        │                          │─────────────────────────▶│
+        │                          │                          │
+        │                          │ 4. Confirms pickup       │
+        │                          │◀─────────────────────────│
+</pre>
+
+ 
+  <p><em>RescueBite platform workflow from donation to distribution</em></p>
+   </div>
+  <p align="center">Made with ❤️ to reduce food waste and fight hunger</p>
+
 
 <hr>
 
@@ -122,6 +283,3 @@ const userSchema = new mongoose.Schema({
 
 <hr>
 
-<blockquote>
-  <strong>Note</strong>: Replace placeholder images (<code>via.placeholder.com</code>) with actual screenshots of your project for better presentation.
-</blockquote>
