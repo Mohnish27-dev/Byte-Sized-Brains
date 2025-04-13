@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - RescueBite</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        /* Main Content Styles */
+        .terms-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .terms-header h1 {
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+
+        .terms-header p {
+            color: #666;
+        }
+
+        .terms-content {
+            margin-bottom: 2rem;
+        }
+
+        .terms-section {
+            margin-bottom: 2rem;
+        }
+
+        .terms-section h2 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .terms-section p, .terms-section ul {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .terms-section ul {
+            padding-left: 2rem;
+        }
+
+        .terms-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Acceptance Section */
+        .acceptance-section {
+            background-color: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            border: 1px solid #eee;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input {
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .checkbox-group label {
+            color: #333;
+        }
+
+        .checkbox-group a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #3e8e41;
+        }
+
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .social-icons img:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .terms-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">RescueBite</div>
+            <div class="header-links">
+                <a href="index.html" style="color: white; text-decoration: none;">Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="terms-container">
+        <div class="terms-header">
+            <h1>Terms and Conditions</h1>
+            <p>Last updated: April 13, 2025</p>
+        </div>
+
+        <div class="terms-content">
+            <div class="terms-section">
+                <h2>1. Introduction</h2>
+                <p>Welcome to RescueBite ("we," "our," or "us"). These Terms and Conditions ("Terms") govern your use of the RescueBite platform that connects food donors with organizations and individuals in need ("Service"). By accessing or using our Service, you agree to be bound by these Terms.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>2. Eligibility</h2>
+                <p>To use our Service, you must:</p>
+                <ul>
+                    <li>Be at least 18 years of age</li>
+                    <li>Have the legal capacity to enter into these Terms</li>
+                    <li>Comply with all applicable laws and regulations</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>3. User Responsibilities</h2>
+                <p>As a user of RescueBite, you agree to:</p>
+                <ul>
+                    <li>Provide accurate and complete information</li>
+                    <li>Maintain the confidentiality of your account credentials</li>
+                    <li>Use the Service only for lawful purposes</li>
+                    <li>Not distribute food that is unsafe for consumption</li>
+                    <li>Comply with all food safety regulations in your jurisdiction</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>4. Food Donations</h2>
+                <p>Food donors acknowledge that:</p>
+                <ul>
+                    <li>All donated food must be safe for human consumption at the time of donation</li>
+                    <li>You are responsible for proper storage and handling prior to donation</li>
+                    <li>RescueBite is not liable for any issues arising from donated food</li>
+                    <li>Under the Bill Emerson Good Samaritan Food Donation Act, you are protected from liability when donating in good faith</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>5. Food Recipients</h2>
+                <p>Food recipients agree that:</p>
+                <ul>
+                    <li>You will use donated food only for its intended charitable purpose</li>
+                    <li>You are responsible for proper storage, handling, and distribution</li>
+                    <li>RescueBite does not guarantee the quantity or quality of donated food</li>
+                    <li>You will not resell donated food for profit</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>6. Privacy</h2>
+                <p>Your use of the Service is subject to our Privacy Policy, which explains how we collect, use, and protect your personal information. By using the Service, you consent to our collection and use of your data as described in the Privacy Policy.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>7. Limitation of Liability</h2>
+                <p>RescueBite shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from:</p>
+                <ul>
+                    <li>Your use or inability to use the Service</li>
+                    <li>Any food donations or distributions</li>
+                    <li>Unauthorized access to or alteration of your transmissions or data</li>
+                    <li>Any other matter relating to the Service</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>8. Changes to Terms</h2>
+                <p>We may modify these Terms at any time. We will notify you of significant changes through the Service or by email. Your continued use of the Service after such changes constitutes your acceptance of the new Terms.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>9. Termination</h2>
+                <p>We may terminate or suspend your access to the Service immediately, without prior notice, for any reason, including if you breach these Terms. All provisions of these Terms which should survive termination will do so.</p>
+            </div>
+
+            <div class="acceptance-section">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">I have read, understood, and agree to be bound by these Terms and Conditions and the <a href="privacy.html">Privacy Policy</a>.</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agreeAge" required>
+                    <label for="agreeAge">I confirm that I am at least 18 years of age.</label>
+                </div>
+                <div class="button-group">
+                    <button id="acceptBtn" class="btn btn-primary" disabled>Accept and Continue</button>
+                    <button id="declineBtn" class="btn btn-secondary">Decline</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>RescueBite</h3>
+                <p>Reducing food waste, fighting hunger.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="donate.html">Donate Food</a>
+                <a href="request.html">Request Food</a>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="terms.html">Terms and Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="cookies.html">Cookie Policy</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>info@RescueBite.org</p>
+                <p>(555) 123-4567</p>
+                <div class="social-icons">
+                    <a href="#"><img src="/asessts/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="/asessts/twitter-icon.png" alt="Twitter"></a>
+                    <a href="#"><img src="/asessts/instagram-icon.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 RescueBite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
+            const agreeTermsCheckbox = document.getElementById('agreeTerms');
+            const agreeAgeCheckbox = document.getElementById('agreeAge');
+            const acceptBtn = document.getElementById('acceptBtn');
+            const declineBtn = document.getElementById('declineBtn');
+
+            // Enable/disable accept button based on checkbox states
+            function updateAcceptButton() {
+                acceptBtn.disabled = !(agreeTermsCheckbox.checked && agreeAgeCheckbox.checked);
+            }
+
+            // Add event listeners to checkboxes
+            agreeTermsCheckbox.addEventListener('change', updateAcceptButton);
+            agreeAgeCheckbox.addEventListener('change', updateAcceptButton);
+
+            // Accept button click handler
+            acceptBtn.addEventListener('click', function() {
+                // window.location.href = 'login.html';
+                window.location.href = "login.html?accepted=true";
+               
+                
+               
+                
+                
+                setTimeout(() => {
+                    console.log('Redirecting to registration completion...');
+                }, 1000);
+            });
+
+            // Decline button click handler
+            declineBtn.addEventListener('click', function() {
+                window.location.href = "login.html?accepted=false";
+               
+                    
+
+                
+            });
+
+            // Scroll to bottom handler to ensure user has seen all terms
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                const windowSize = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                
+                // If user is near bottom of page, enable checkboxes
+                if ((scrollPosition + windowSize) >= (bodyHeight - 200)) {
+                    agreeTermsCheckbox.disabled = false;
+                    agreeAgeCheckbox.disabled = false;
+                }
+            });
+
+            // Initially disable checkboxes until user scrolls
+            agreeTermsCheckbox.disabled = true;
+            agreeAgeCheckbox.disabled = true;
+        });
+    </script>
+</body>
+</html>
