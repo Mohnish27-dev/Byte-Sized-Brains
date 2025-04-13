@@ -177,17 +177,17 @@ const userSchema = new mongoose.Schema({
 <table>
   <tr>
     <th>Homepage</th>
-    <th>Login Page</th>
+    <th>SignUp Page</th>
     <th>Dashboard</th>
     <th>Donate</th>
     <th>About</th>
   </tr>
   <tr>
-    <td><img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Home" alt="Homepage"></td>
-    <td><img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Login" alt="Login"></td>
-    <td><img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Dashboard" alt="Dashboard"></td>
-    <td><img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Donate" alt="Donate"></td>
-    <td><img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=About" alt="About"></td>
+    <td><img src="https://github.com/Mohnish27-dev/Byte-Sized-Brains/blob/main/Project%20Byteverse/asessts/home.png" height="800" width="400" alt="Homepage"></td>
+    <td><img src="https://github.com/Mohnish27-dev/Byte-Sized-Brains/blob/main/Project%20Byteverse/asessts/signup.png"  height="400" width="500" alt="SignUp"></td>
+    <td><img src="https://github.com/Mohnish27-dev/Byte-Sized-Brains/blob/main/Project%20Byteverse/asessts/dashboard.png"  height="800" width="500" alt="Dashboard"></td>
+    <td><img src="https://github.com/Mohnish27-dev/Byte-Sized-Brains/blob/main/Project%20Byteverse/asessts/donate.png"  height="400" width="400" alt="Donate"></td>
+    <td><img src="https://github.com/Mohnish27-dev/Byte-Sized-Brains/blob/main/Project%20Byteverse/asessts/about.png" height="800" width="400" alt="About"></td>
   </tr>
 </table>
 
