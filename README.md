@@ -16,7 +16,7 @@
     <a href="https://docs.google.com/presentation/d/1Gtdzokfcnme0VkNsSy-Kkz0g89j1E7CD/edit?usp=drive_link&ouid=114810454171183231970&rtpof=true&sd=true">
       <img src="https://img.shields.io/badge/Presentation-PPT-blue?style=for-the-badge&logo=microsoft-powerpoint" alt="PPT">
     </a>
-    <a href="#">
+    <a href="https://drive.google.com/file/d/1jMiDQt9MQcb1sluqkYCnCx92eYgzgxCl/view?usp=drive_link">
       <img src="https://img.shields.io/badge/Video-Pitch-red?style=for-the-badge&logo=youtube" alt="Video Pitch">
     </a>
   </p>
