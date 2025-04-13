@@ -13,7 +13,7 @@
   <!-- Quick Links -->
   <h2>📌 Quick Links</h2>
   <p>
-    <a href="#">
+    <a href="https://docs.google.com/presentation/d/1Gtdzokfcnme0VkNsSy-Kkz0g89j1E7CD/edit?usp=drive_link&ouid=114810454171183231970&rtpof=true&sd=true">
       <img src="https://img.shields.io/badge/Presentation-PPT-blue?style=for-the-badge&logo=microsoft-powerpoint" alt="PPT">
     </a>
     <a href="#">
